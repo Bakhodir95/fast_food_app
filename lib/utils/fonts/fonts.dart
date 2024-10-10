@@ -4,26 +4,59 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomFonts {
-  static TextStyle lato80024 = GoogleFonts.lato(
+  static TextStyle inriaSans24 = GoogleFonts.inriaSans(
     fontSize: 24.sp,
-    fontWeight: FontWeight.w800,
-    color: AppColors.customBlack,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grey,
   );
-  static TextStyle lato80022 = GoogleFonts.lato(
-    fontSize: 22.sp,
-    fontWeight: FontWeight.w800,
-    color: AppColors.customBlack,
+  static TextStyle inriaSans18 = GoogleFonts.inriaSans(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.white,
   );
-  static TextStyle lato400 = GoogleFonts.lato(
-      fontSize: 12.sp,
-      fontWeight: FontWeight.w400,
-      color: AppColors.customheaderBlack);
-  static TextStyle lexendDeca = GoogleFonts.lexendDeca(
-      fontSize: 22.sp,
-      fontWeight: FontWeight.w700,
-      color: AppColors.customLightBlack);
-  static TextStyle lexend =
-      GoogleFonts.lexend(fontSize: 18, fontWeight: FontWeight.w700);
-  static TextStyle lexendTera = GoogleFonts.lexendTera(
-      fontSize: 15.sp, fontWeight: FontWeight.w500, color: Colors.white);
+  static TextStyle inriaSans18grey = GoogleFonts.inriaSans(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.whiteGrey,
+  );
+  static TextStyle inriaSans18w700 = GoogleFonts.inriaSans(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+  );
+  static TextStyle inriaSans14 = GoogleFonts.inriaSans(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w300,
+    color: AppColors.mainGrey,
+  );
+  static TextStyle inriaSans14white = GoogleFonts.inriaSans(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w300,
+    color: AppColors.white,
+  );
+  static TextStyle inriaSans10 = GoogleFonts.inriaSans(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w300,
+    color: AppColors.mainGrey,
+  );
+  static TextStyle inriaSans16 = GoogleFonts.inriaSans(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.white,
+  );
+  static TextStyle inriaSans16300 = GoogleFonts.inriaSans(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w300,
+    color: AppColors.white,
+  );
+  static TextStyle inriaSans20 = GoogleFonts.inriaSans(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.mainGrey,
+  );
+  static TextStyle inriaSans28 = GoogleFonts.inriaSans(
+    fontSize: 28.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.selectedBlack,
+  );
 }

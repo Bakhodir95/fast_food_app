@@ -14,7 +14,7 @@ class _MyWidgetState extends State<Underline> {
     return Container(
       width: double.infinity,
       height: 0.5,
-      color: AppColors.whiteGreen2,
+      color: AppColors.grey,
     );
   }
 }

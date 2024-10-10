@@ -1,5 +1,6 @@
 import 'package:fast_food_app/utils/app_constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextfield extends StatelessWidget {
   final String? hintText;
@@ -14,6 +15,7 @@ class CustomTextfield extends StatelessWidget {
   final bool obscureText;
   final String? errorText;
   final Function(String)? onChanged;
+  final TextAlign? textAlign;
 
   const CustomTextfield({
     super.key,
@@ -29,11 +31,14 @@ class CustomTextfield extends StatelessWidget {
     this.obscureText = false,
     this.errorText,
     this.onChanged,
+    this.textAlign,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlign: TextAlign.center,
+      maxLengthEnforcement: MaxLengthEnforcement.enforced,
       maxLength: maxlength,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -61,6 +66,6 @@ class CustomTextfield extends StatelessWidget {
 OutlineInputBorder _returnBorder([Color? color]) {
   return OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
-    borderSide: BorderSide(color: color ?? AppColors.textBorederColor),
+    borderSide: BorderSide(color: color ?? AppColors.textfieldBorder),
   );
 }

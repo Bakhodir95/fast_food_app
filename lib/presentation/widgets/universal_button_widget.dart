@@ -20,7 +20,7 @@ class UniversalButtonWidget extends StatelessWidget {
       height: 50.h,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: color ?? AppColors.green,
+          backgroundColor: color ?? AppColors.mainButtonColor,
           foregroundColor: AppColors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),

@@ -1,18 +1,21 @@
-import 'package:fast_food_app/screens/register_screen.dart';
+import 'package:fast_food_app/presentation/screens/main_screen.dart';
+import 'package:fast_food_app/presentation/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main(List<String> args) {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: RegisterScreen(),
+        home: MainScreen(),
       ),
     );
   }
