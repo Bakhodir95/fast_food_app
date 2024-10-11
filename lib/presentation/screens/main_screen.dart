@@ -1,3 +1,6 @@
+import 'package:fast_food_app/domain/entities/cart_item.dart';
+import 'package:fast_food_app/presentation/screens/order_screen.dart';
+import 'package:fast_food_app/presentation/widgets/header_widget.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
 import 'package:fast_food_app/utils/app_constants/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
@@ -14,7 +17,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Map<String, dynamic>> menu = [
+  final List<Map<String, dynamic>> menu = [
     {
       "image": "assets/images/burger.png",
       "text": "Burger",
@@ -60,35 +63,29 @@ class _MainScreenState extends State<MainScreen> {
       "text": "Salat",
     },
   ];
+  final List<CartItem> cartItems = [];
+
+  void _addCart() {
+    final selectedMenuItem = menu[_selectedIndex];
+
+    final existingItem =
+        cartItems.firstWhere((item) => item.text == selectedMenuItem['text']);
+
+    // ignore: unnecessary_null_comparison
+    if (existingItem == null) {
+      cartItems.add(CartItem(
+        image: selectedMenuItem['image'],
+        text: selectedMenuItem['text'],
+      ));
+    } else {
+      existingItem.quantity++;
+    }
+  }
 
   int _selectedIndex = 0;
   bool isSelection = false;
   int itemCount = 0;
   int famousItemCount = 0;
-
-  void _increment() {
-    setState(() {
-      itemCount++;
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      itemCount--;
-    });
-  }
-
-  void _incrementF() {
-    setState(() {
-      famousItemCount++;
-    });
-  }
-
-  void _decrementF() {
-    setState(() {
-      famousItemCount--;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,30 +99,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                          width: 74.w,
-                          height: 40.h,
-                          child: Image.asset("assets/images/header.png")),
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.shopping_cart_outlined,
-                                color: AppColors.cardColor,
-                              )),
-                          SvgPicture.asset(
-                            "assets/svgs/sortedicon.svg",
-                            width: 32.w,
-                            height: 32.h,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
+                  const HeaderWidget(),
                   Gap(9.h),
                   Stack(
                     children: [
@@ -231,26 +205,110 @@ class _MainScreenState extends State<MainScreen> {
                     },
                   ),
                   const Gap(29.7),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 34.w,
-                        height: 34.h,
-                        child: Image.asset(menu[_selectedIndex]['image']),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12, right: 2),
-                        child: Container(
-                          width: 2.w,
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Container(
+                              width: double.infinity,
+                              height: 460,
+                              decoration: BoxDecoration(
+                                  color: AppColors.whiteWhite,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                      width: 139.w,
+                                      height: 110.h,
+                                      child: Image.asset(
+                                        menu[_selectedIndex]['image'],
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Gap(12.h),
+                                  Text(
+                                    menu[_selectedIndex]['text'],
+                                    style: CustomFonts.inriaSans28,
+                                  ),
+                                  Gap(8.h),
+                                  Text(
+                                    "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
+                                    style: CustomFonts.inriaSans144,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  Gap(34.h),
+                                  const Text(
+                                    "24 000 so’m",
+                                    style: TextStyle(
+                                        decoration: TextDecoration.lineThrough,
+                                        decorationColor: AppColors.whiteGrey,
+                                        color: AppColors.whiteGrey,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                  Text(
+                                    "24 000 so’m",
+                                    style: CustomFonts.inriaSans18grey,
+                                  ),
+                                  Gap(21.h),
+                                  UniversalButtonWidget(
+                                      function: () {
+                                        _addCart();
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (ctx) => OrderScreen(
+                                              cartItems: cartItems,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      color: null,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text("Savatga qo’shish"),
+                                          const Gap(8),
+                                          Icon(
+                                            Icons.shopping_cart_outlined,
+                                            color: AppColors.white,
+                                            size: 13.sp,
+                                          )
+                                        ],
+                                      ))
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 34.w,
                           height: 34.h,
-                          decoration: BoxDecoration(color: AppColors.yellow),
+                          child: Image.asset(menu[_selectedIndex]['image']),
                         ),
-                      ),
-                      Text(
-                        menu[_selectedIndex]['text'],
-                        style: CustomFonts.inriaSans20,
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12, right: 2),
+                          child: Container(
+                            width: 2.w,
+                            height: 34.h,
+                            decoration:
+                                const BoxDecoration(color: AppColors.yellow),
+                          ),
+                        ),
+                        Text(
+                          menu[_selectedIndex]['text'],
+                          style: CustomFonts.inriaSans20,
+                        )
+                      ],
+                    ),
                   ),
                   const Gap(20),
                   Container(
@@ -280,7 +338,14 @@ class _MainScreenState extends State<MainScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 23),
                           child: UniversalButtonWidget(
-                              function: () {},
+                              function: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (ctx) => OrderScreen(
+                                              cartItems: cartItems,
+                                            )));
+                              },
                               color: null,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -327,7 +392,7 @@ class _MainScreenState extends State<MainScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                                onPressed: _decrement,
+                                onPressed: () {},
                                 icon: const Icon(
                                   Icons.remove,
                                   size: 18,
@@ -339,7 +404,7 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                             const Gap(21),
                             IconButton(
-                                onPressed: _increment,
+                                onPressed: () {},
                                 icon: const Icon(
                                   Icons.add,
                                   size: 18,
@@ -375,11 +440,12 @@ class _MainScreenState extends State<MainScreen> {
                         height: 184.h,
                         child: Image.asset("assets/images/chizburger.png"),
                       ),
-                      Gap(10.w),
+                      Gap(8.w),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Gap(11.h),
                             Text(
                               "Chizburger",
                               style: CustomFonts.inriaSans24,
@@ -387,17 +453,17 @@ class _MainScreenState extends State<MainScreen> {
                             Gap(5.h),
                             Text(
                               "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
-                              style: CustomFonts.inriaSans10,
+                              style: CustomFonts.inriaSans10whiteGrey,
                             ),
-                            const Gap(44),
+                            Gap(44.h),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 IconButton(
-                                    onPressed: _decrementF,
-                                    icon: const Icon(
+                                    onPressed: () {},
+                                    icon: Icon(
                                       Icons.remove,
-                                      size: 18,
+                                      size: 18.sp,
                                     )),
                                 const Gap(21),
                                 Text(
@@ -406,19 +472,19 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                                 Gap(21.h),
                                 IconButton(
-                                    onPressed: _incrementF,
+                                    onPressed: () {},
                                     icon: const Icon(
                                       Icons.add,
                                       size: 18,
                                     )),
                               ],
                             ),
-                            Gap(15.h)
                           ],
                         ),
                       ),
                     ],
                   ),
+                  Gap(15.h),
                   Row(
                     children: [
                       SizedBox(
@@ -431,6 +497,7 @@ class _MainScreenState extends State<MainScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Gap(11.h),
                             Text(
                               "Chizburger",
                               style: CustomFonts.inriaSans24,
@@ -438,9 +505,9 @@ class _MainScreenState extends State<MainScreen> {
                             Gap(5.h),
                             Text(
                               "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
-                              style: CustomFonts.inriaSans10,
+                              style: CustomFonts.inriaSans10whiteGrey,
                             ),
-                            Gap(25.h),
+                            Gap(47.h),
                             SizedBox(
                               width: double.infinity,
                               height: 28.h,
@@ -456,12 +523,8 @@ class _MainScreenState extends State<MainScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Text(
-                                        "Savatga qo’shish",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
+                                      Text("Savatga qo’shish",
+                                          style: CustomFonts.inriaSans14white),
                                       const Gap(8),
                                       Icon(
                                         Icons.shopping_cart_outlined,

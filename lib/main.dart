@@ -1,3 +1,4 @@
+import 'package:fast_food_app/presentation/screens/location_screen.dart';
 import 'package:fast_food_app/presentation/screens/main_screen.dart';
 import 'package:fast_food_app/presentation/screens/register_screen.dart';
 import 'package:flutter/material.dart';
