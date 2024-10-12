@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color black = Color.fromRGBO(43, 43, 43, 1);
-  static const Color white = Colors.white;
+  static const Color white = Color.fromRGBO(255, 255, 255, 1);
+  static const BoxShadow boxshadow = BoxShadow(
+    color: Color.fromRGBO(0, 0, 0, 0.05),
+    offset: Offset(0, 4),
+    blurRadius: 43.3,
+  );
 
   static const Color mainButtonColor = Color.fromRGBO(254, 119, 0, 1);
   static const Color yellow = Color.fromRGBO(254, 204, 0, 0.8);

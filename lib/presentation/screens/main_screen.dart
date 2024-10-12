@@ -10,81 +10,46 @@ import 'package:gap/gap.dart';
 import 'package:svg_flutter/svg.dart';
 
 class MainScreen extends StatefulWidget {
-  MainScreen({super.key});
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<Map<String, dynamic>> menu = [
-    {
-      "image": "assets/images/burger.png",
-      "text": "Burger",
-    },
-    {
-      "image": "assets/images/lavash.png",
-      "text": "Lavash",
-    },
-    {
-      "image": "assets/images/donar.png",
-      "text": "Donar",
-    },
-    {
-      "image": "assets/images/sendwich.png",
-      "text": "Sendwich",
-    },
-    {
-      "image": "assets/images/pitsa.png",
-      "text": "Pitsa",
-    },
-    {
-      "image": "assets/images/garnir.png",
-      "text": "Garnir",
-    },
-    {
-      "image": "assets/images/kombo.png",
-      "text": "Kombo",
-    },
-    {
-      "image": "assets/images/sous.png",
-      "text": "Sous",
-    },
-    {
-      "image": "assets/images/qoshimcha.png",
-      "text": "Qo'shimcha",
-    },
-    {
-      "image": "assets/images/ichimlik.png",
-      "text": "Ichimlik",
-    },
-    {
-      "image": "assets/images/salat.png",
-      "text": "Salat",
-    },
+  final List<CartItem> items = [
+    CartItem(image: "assets/images/burger.png", text: "Burger"),
+    CartItem(image: "assets/images/lavash.png", text: "Lavash"),
+    CartItem(image: "assets/images/donar.png", text: "Donar"),
+    CartItem(image: "assets/images/sendwich.png", text: "Sendwich"),
+    CartItem(image: "assets/images/pitsa.png", text: "Pitsa"),
+    CartItem(image: "assets/images/garnir.png", text: "Garnir"),
+    CartItem(image: "assets/images/kombo.png", text: "Kombo"),
+    CartItem(image: "assets/images/sous.png", text: "Sous"),
+    CartItem(image: "assets/images/qoshimcha.png", text: "Qo'shimcha"),
+    CartItem(image: "assets/images/ichimlik.png", text: "Ichimlik"),
+    CartItem(image: "assets/images/salat.png", text: "Salat"),
   ];
-  final List<CartItem> cartItems = [];
 
-  void _addCart() {
-    final selectedMenuItem = menu[_selectedIndex];
+  final List<Map<String, dynamic>> orders = [];
 
-    final existingItem =
-        cartItems.firstWhere((item) => item.text == selectedMenuItem['text']);
+  void addCartItems(CartItem cartItem, int count) {
+    final existingItemIndex =
+        orders.indexWhere((order) => order['item'] == cartItem);
 
-    // ignore: unnecessary_null_comparison
-    if (existingItem == null) {
-      cartItems.add(CartItem(
-        image: selectedMenuItem['image'],
-        text: selectedMenuItem['text'],
-      ));
+    if (existingItemIndex != -1) {
+      setState(() {
+        orders[existingItemIndex]['count'] += count;
+      });
     } else {
-      existingItem.quantity++;
+      setState(() {
+        orders.add({"item": cartItem, "count": count});
+      });
     }
   }
 
   int _selectedIndex = 0;
-  bool isSelection = false;
-  int itemCount = 0;
+  int itemCount = 1;
   int famousItemCount = 0;
 
   @override
@@ -160,7 +125,7 @@ class _MainScreenState extends State<MainScreen> {
                       mainAxisSpacing: 12,
                       childAspectRatio: 3.5,
                     ),
-                    itemCount: menu.length,
+                    itemCount: items.length,
                     itemBuilder: (context, index) {
                       bool isSelected = _selectedIndex == index;
 
@@ -168,6 +133,7 @@ class _MainScreenState extends State<MainScreen> {
                         onTap: () {
                           setState(() {
                             _selectedIndex = index;
+                            itemCount = 1; // Reset item count when selected
                           });
                         },
                         child: Ink(
@@ -190,10 +156,10 @@ class _MainScreenState extends State<MainScreen> {
                               SizedBox(
                                   width: 40.w,
                                   height: 40.h,
-                                  child: Image.asset(menu[index]['image'])),
+                                  child: Image.asset(items[index].image)),
                               const Gap(8),
                               Text(
-                                menu[index]["text"],
+                                items[index].text,
                                 style: isSelected
                                     ? CustomFonts.inriaSans14white
                                     : CustomFonts.inriaSans14,
@@ -222,15 +188,16 @@ class _MainScreenState extends State<MainScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   SizedBox(
-                                      width: 139.w,
-                                      height: 110.h,
-                                      child: Image.asset(
-                                        menu[_selectedIndex]['image'],
-                                        fit: BoxFit.contain,
-                                      )),
+                                    width: 139.w,
+                                    height: 110.h,
+                                    child: Image.asset(
+                                      items[_selectedIndex].image,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
                                   Gap(12.h),
                                   Text(
-                                    menu[_selectedIndex]['text'],
+                                    items[_selectedIndex].text,
                                     style: CustomFonts.inriaSans28,
                                   ),
                                   Gap(8.h),
@@ -255,31 +222,33 @@ class _MainScreenState extends State<MainScreen> {
                                   ),
                                   Gap(21.h),
                                   UniversalButtonWidget(
-                                      function: () {
-                                        _addCart();
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (ctx) => OrderScreen(
-                                              cartItems: cartItems,
-                                            ),
+                                    function: () {
+                                      addCartItems(
+                                          items[_selectedIndex], itemCount);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (ctx) => OrderScreen(
+                                            cartItems: items,
                                           ),
-                                        );
-                                      },
-                                      color: null,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Text("Savatga qo’shish"),
-                                          const Gap(8),
-                                          Icon(
-                                            Icons.shopping_cart_outlined,
-                                            color: AppColors.white,
-                                            size: 13.sp,
-                                          )
-                                        ],
-                                      ))
+                                        ),
+                                      );
+                                    },
+                                    color: null,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Text("Savatga qo’shish"),
+                                        const Gap(8),
+                                        Icon(
+                                          Icons.shopping_cart_outlined,
+                                          color: AppColors.white,
+                                          size: 13.sp,
+                                        )
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -292,7 +261,7 @@ class _MainScreenState extends State<MainScreen> {
                         SizedBox(
                           width: 34.w,
                           height: 34.h,
-                          child: Image.asset(menu[_selectedIndex]['image']),
+                          child: Image.asset(items[_selectedIndex].image),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 12, right: 2),
@@ -304,9 +273,27 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                         ),
                         Text(
-                          menu[_selectedIndex]['text'],
+                          items[_selectedIndex].text,
                           style: CustomFonts.inriaSans20,
-                        )
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Gap(20),
+                  Container(
+                    width: double.infinity,
+                    height: 276,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.whiteWhite),
+                    child: Column(
+                      children: [
+                        for (var order in orders)
+                          ListTile(
+                            leading: Image.asset(order['item'].image),
+                            title: Text(order['item'].text),
+                            subtitle: Text('Count: ${order['count']}'),
+                          ),
                       ],
                     ),
                   ),
@@ -343,7 +330,7 @@ class _MainScreenState extends State<MainScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (ctx) => OrderScreen(
-                                              cartItems: cartItems,
+                                              cartItems: items,
                                             )));
                               },
                               color: null,
@@ -549,3 +536,9 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
+
+
+
+/*   
+                
+*/
