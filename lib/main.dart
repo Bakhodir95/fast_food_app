@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ScreenUtilInit(
-      
+      designSize: Size(412, 899),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: LocationScreen(),
