@@ -1,7 +1,9 @@
 import 'package:fast_food_app/domain/entities/cart_item.dart';
+import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
 import 'package:fast_food_app/utils/app_constants/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -36,7 +38,7 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -109,7 +111,51 @@ class _OrderScreenState extends State<OrderScreen> {
                 },
               ),
             ),
-            // Spacer()
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "192 000 so’m",
+                      style: CustomFonts.inriaSans12maingrey,
+                    ),
+                    Text(
+                      "149 000 so’m",
+                      style: CustomFonts.inriaSans18grey,
+                    ),
+                  ],
+                ),
+                Text(
+                  "40 daqiqa",
+                  style: CustomFonts.inriaSans18grey,
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.whiteGrey),
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                    child: UniversalButtonWidget(
+                        function: () {},
+                        color: AppColors.whiteWhite,
+                        child: Text(
+                          "PROMO KOD",
+                          style: CustomFonts.inriaSans14,
+                        )),
+                  ),
+                )
+              ],
+            ),
+            Gap(10.h),
+            UniversalButtonWidget(
+                function: () {},
+                color: null,
+                child: Text(
+                  "Davom etish",
+                  style: CustomFonts.inriaSans16,
+                ))
           ],
         ),
       ),

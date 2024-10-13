@@ -37,19 +37,17 @@ class _MainScreenState extends State<MainScreen> {
     final existingItemIndex =
         orders.indexWhere((order) => order['item'] == cartItem);
 
-    if (existingItemIndex != -1) {
-      setState(() {
-        orders[existingItemIndex]['count'] += count;
-      });
-    } else {
+    if (existingItemIndex == -1) {
       setState(() {
         orders.add({"item": cartItem, "count": count});
       });
+    } else {
+      print('Item already in cart');
     }
   }
 
   int _selectedIndex = 0;
-  int itemCount = 1;
+  int itemCount = 0;
   int famousItemCount = 0;
 
   @override
@@ -276,24 +274,6 @@ class _MainScreenState extends State<MainScreen> {
                           items[_selectedIndex].text,
                           style: CustomFonts.inriaSans20,
                         ),
-                      ],
-                    ),
-                  ),
-                  const Gap(20),
-                  Container(
-                    width: double.infinity,
-                    height: 276,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.whiteWhite),
-                    child: Column(
-                      children: [
-                        for (var order in orders)
-                          ListTile(
-                            leading: Image.asset(order['item'].image),
-                            title: Text(order['item'].text),
-                            subtitle: Text('Count: ${order['count']}'),
-                          ),
                       ],
                     ),
                   ),

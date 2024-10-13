@@ -24,6 +24,12 @@ class CustomFonts {
     fontWeight: FontWeight.w400,
     color: AppColors.whiteGrey,
   );
+  static TextStyle inriaSans12maingrey = GoogleFonts.inriaSans(
+    fontSize: 12.sp,
+    decoration: TextDecoration.lineThrough,
+    fontWeight: FontWeight.w300,
+    color: AppColors.grey,
+  );
   static TextStyle inriaSans18w700 = GoogleFonts.inriaSans(
     fontSize: 18.sp,
     fontWeight: FontWeight.w700,

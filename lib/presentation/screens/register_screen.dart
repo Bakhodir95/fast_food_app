@@ -51,7 +51,6 @@ class RegisterScreen extends StatelessWidget {
                         Text("Telefon raqamingizni kiriting:",
                             style: CustomFonts.inriaSans10),
                         CustomTextfield(
-                            textAlign: TextAlign.start,
                             controller: _phoneController,
                             prefixIcon: const Icon(CupertinoIcons.phone_fill),
                             textInputType: TextInputType.phone,

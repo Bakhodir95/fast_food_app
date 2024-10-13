@@ -15,7 +15,6 @@ class CustomTextfield extends StatelessWidget {
   final bool obscureText;
   final String? errorText;
   final Function(String)? onChanged;
-  final TextAlign? textAlign;
 
   const CustomTextfield({
     super.key,
@@ -31,13 +30,11 @@ class CustomTextfield extends StatelessWidget {
     this.obscureText = false,
     this.errorText,
     this.onChanged,
-    this.textAlign,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      textAlign: TextAlign.center,
       maxLengthEnforcement: MaxLengthEnforcement.enforced,
       maxLength: maxlength,
       validator: validator,

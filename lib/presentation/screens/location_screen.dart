@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
 import 'package:fast_food_app/presentation/widgets/location_container_widget.dart';
 import 'package:fast_food_app/utils/app_constants/app_colors.dart';
@@ -10,17 +12,17 @@ class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
 
   @override
-  State<LocationScreen> createState() => _MainScreenState();
+  State<LocationScreen> createState() => _LocationScreenState();
 }
 
-class _MainScreenState extends State<LocationScreen> {
+class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Column(
@@ -42,15 +44,21 @@ class _MainScreenState extends State<LocationScreen> {
                       Text(
                         "FILIALLAR",
                         style: CustomFonts.inriaSans24,
-                      )
+                      ),
                     ],
                   ),
                   Gap(16.h),
-                  const LocationContainerWidget(),
-                  const LocationContainerWidget(),
-                  const LocationContainerWidget(),
-                  const LocationContainerWidget(),
-                  const LocationContainerWidget(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      LocationContainerWidget(),
+                      LocationContainerWidget(),
+                      LocationContainerWidget(),
+                      LocationContainerWidget(),
+                      LocationContainerWidget()
+                    ],
+                  ),
+                  Gap(30.h),
                 ],
               ),
             ),
