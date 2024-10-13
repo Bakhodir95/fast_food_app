@@ -14,6 +14,7 @@ class CustomTextfield extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final String? errorText;
+  final TextStyle? hintStyle;
   final Function(String)? onChanged;
 
   const CustomTextfield({
@@ -30,6 +31,7 @@ class CustomTextfield extends StatelessWidget {
     this.obscureText = false,
     this.errorText,
     this.onChanged,
+    this.hintStyle,
   });
 
   @override

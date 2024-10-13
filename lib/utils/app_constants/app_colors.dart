@@ -23,4 +23,7 @@ class AppColors {
 
   static const Color textfieldBorder = Color.fromRGBO(230, 230, 230, 1);
   static const Color selectedBlack = Color.fromRGBO(43, 43, 43, 1);
+  static const Color containerBorderColor = Color.fromRGBO(230, 230, 230, 1);
+
+
 }

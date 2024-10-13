@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
-import 'package:fast_food_app/presentation/widgets/location_container_widget.dart';
+import 'package:fast_food_app/presentation/widgets/branch_container_widget.dart';
+import 'package:fast_food_app/presentation/widgets/location_widget.dart';
 import 'package:fast_food_app/utils/app_constants/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
@@ -27,39 +26,7 @@ class _LocationScreenState extends State<LocationScreen> {
               padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const HeaderWidget(),
-                  Gap(30.h),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12, right: 2),
-                        child: Container(
-                          width: 2.w,
-                          height: 34.h,
-                          decoration:
-                              const BoxDecoration(color: AppColors.yellow),
-                        ),
-                      ),
-                      Text(
-                        "FILIALLAR",
-                        style: CustomFonts.inriaSans24,
-                      ),
-                    ],
-                  ),
-                  Gap(16.h),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      LocationContainerWidget(),
-                      LocationContainerWidget(),
-                      LocationContainerWidget(),
-                      LocationContainerWidget(),
-                      LocationContainerWidget()
-                    ],
-                  ),
-                  Gap(30.h),
-                ],
+                children: [const HeaderWidget(), Gap(10.h), LocationWidget()],
               ),
             ),
           ),

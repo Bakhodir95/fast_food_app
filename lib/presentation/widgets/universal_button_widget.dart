@@ -6,13 +6,16 @@ class UniversalButtonWidget extends StatelessWidget {
   final VoidCallback function;
   final Widget child;
   final Color? color;
+  final Color? borderColor;
 
   const UniversalButtonWidget({
     super.key,
     required this.function,
+    this.borderColor,
     required this.child,
     required this.color,
   });
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -20,6 +23,7 @@ class UniversalButtonWidget extends StatelessWidget {
       height: 50.h,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          side: BorderSide(color: borderColor ?? Colors.transparent),
           backgroundColor: color ?? AppColors.mainButtonColor,
           foregroundColor: AppColors.white,
           shape: RoundedRectangleBorder(

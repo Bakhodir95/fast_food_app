@@ -216,7 +216,7 @@ class _MainScreenState extends State<MainScreen> {
                                   ),
                                   Text(
                                     "24 000 so’m",
-                                    style: CustomFonts.inriaSans18grey,
+                                    style: CustomFonts.inriaSans24,
                                   ),
                                   Gap(21.h),
                                   UniversalButtonWidget(

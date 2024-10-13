@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fast_food_app/presentation/screens/location_screen.dart';
 import 'package:fast_food_app/utils/app_constants/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class LocationContainerWidget extends StatelessWidget {
                   topLeft: Radius.circular(15), topRight: Radius.circular(15)),
             ),
             width: double.infinity,
-            height: 250.h,
+            height: 176.h,
             child: GoogleMap(
               myLocationEnabled: true,
               compassEnabled: true,
@@ -89,7 +90,12 @@ class LocationContainerWidget extends StatelessWidget {
                 ],
               ),
               trailing: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (ctx) => const LocationScreen()));
+                },
                 child: Ink(
                   width: 39.w,
                   height: 39.h,
@@ -106,7 +112,7 @@ class LocationContainerWidget extends StatelessWidget {
               ),
             ),
           ),
-          Gap(30.h),
+          // Gap(15.h),
         ],
       ),
     );
