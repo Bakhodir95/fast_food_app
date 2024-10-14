@@ -1,7 +1,7 @@
 import 'package:fast_food_app/domain/entities/cart_item.dart';
 import 'package:fast_food_app/presentation/screens/delivery_screen.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
-import 'package:fast_food_app/utils/app_constants/app_colors.dart';
+import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

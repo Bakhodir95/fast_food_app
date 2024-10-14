@@ -4,6 +4,7 @@ import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart'
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
@@ -50,20 +51,26 @@ class RegisterScreen extends StatelessWidget {
                         const Gap(15),
                         Text("Telefon raqamingizni kiriting:",
                             style: CustomFonts.inriaSans10),
+                        SizedBox(
+                          height: 2,
+                        ),
                         CustomTextfield(
-                            controller: _phoneController,
-                            prefixIcon: const Icon(CupertinoIcons.phone_fill),
-                            textInputType: TextInputType.phone,
-                            hintText: "Telefon raqamingiz...",
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Ma'lumot bo'sh bo'lmasligi kerak";
-                              } else if (value.length != 9 ||
-                                  !RegExp(r'^[0-9]+$').hasMatch(value)) {
-                                return 'Faqat 9 ta raqam kiriting!';
-                              }
-                              return null;
-                            }),
+                          inputFormatters: [
+                            MaskedInputFormatter("+998 (##) ###-##-##"),
+                          ],
+                          controller: _phoneController,
+                          prefixIcon: const Icon(CupertinoIcons.phone_fill),
+                          textInputType: TextInputType.phone,
+                          hintText: "Telefon raqamingiz...",
+                          hintStyle: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w300),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Ma'lumot bo'sh bo'lmasligi kerak";
+                            }
+                            return null;
+                          },
+                        )
                       ],
                     ),
                     UniversalButtonWidget(

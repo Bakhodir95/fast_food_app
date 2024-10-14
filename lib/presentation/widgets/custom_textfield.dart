@@ -1,4 +1,4 @@
-import 'package:fast_food_app/utils/app_constants/app_colors.dart';
+import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -16,6 +16,7 @@ class CustomTextfield extends StatelessWidget {
   final String? errorText;
   final TextStyle? hintStyle;
   final Function(String)? onChanged;
+  final List<TextInputFormatter>? inputFormatters; // Add this line
 
   const CustomTextfield({
     super.key,
@@ -32,6 +33,7 @@ class CustomTextfield extends StatelessWidget {
     this.errorText,
     this.onChanged,
     this.hintStyle,
+    this.inputFormatters, // Add this line
   });
 
   @override
@@ -46,6 +48,7 @@ class CustomTextfield extends StatelessWidget {
       textInputAction: textInputAction,
       keyboardType: textInputType,
       obscureText: obscureText,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,

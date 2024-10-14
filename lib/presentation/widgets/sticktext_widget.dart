@@ -1,8 +1,9 @@
-import 'package:fast_food_app/utils/app_constants/app_colors.dart';
+import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class SticktextWidget extends StatelessWidget {
   Color? color;
   TextStyle? style;
