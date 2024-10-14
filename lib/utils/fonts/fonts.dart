@@ -46,7 +46,7 @@ class CustomFonts {
     color: AppColors.whiteGrey,
   );
   static TextStyle inriaSans14white = GoogleFonts.inriaSans(
-    fontSize: 14.sp,
+    fontSize: 14,
     fontWeight: FontWeight.w300,
     color: AppColors.white,
   );
@@ -61,7 +61,7 @@ class CustomFonts {
     color: AppColors.whiteGrey,
   );
   static TextStyle inriaSans16 = GoogleFonts.inriaSans(
-    fontSize: 16.sp,
+    fontSize: 16,
     fontWeight: FontWeight.w400,
     color: AppColors.white,
   );

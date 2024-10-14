@@ -16,14 +16,13 @@ class PinThemeWidget extends StatelessWidget {
       ),
     );
 
-    return Center(
-      child: Pinput(
-        length: 5,
-        defaultPinTheme: pinTheme,
-        onCompleted: (pin) {
-          print('Completed PIN: $pin');
-        },
-      ),
+    return Pinput(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      length: 5,
+      defaultPinTheme: pinTheme,
+      onCompleted: (pin) {
+        print('Completed PIN: $pin');
+      },
     );
   }
 }

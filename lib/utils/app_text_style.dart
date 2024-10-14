@@ -2,40 +2,40 @@ import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
-  static TextStyle nunitoThin = const TextStyle(
+  static TextStyle inriaSansThin = const TextStyle(
     fontFamily: "inria_Sans",
     fontWeight: FontWeight.w200,
     color: AppColors.black,
   );
-  static TextStyle nunitoLight = const TextStyle(
+  static TextStyle inriaSansLight = const TextStyle(
     fontFamily: "inria_Sans",
     fontWeight: FontWeight.w300,
     color: AppColors.black,
   );
-  static TextStyle nunitoRegular = const TextStyle(
+  static TextStyle inriaSansRegular = const TextStyle(
     fontFamily: "inria_Sans",
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
-  static TextStyle nunitoMedium = const TextStyle(
+  static TextStyle inriaSansMedium = const TextStyle(
     fontFamily: "inria_Sans",
     fontWeight: FontWeight.w500,
     color: AppColors.black,
   );
 
-  static TextStyle nunitoSemiBold = const TextStyle(
+  static TextStyle inriaSansSemiBold = const TextStyle(
     fontFamily: "inria_Sans",
     fontWeight: FontWeight.w600,
     color: AppColors.black,
   );
 
-  static TextStyle nunitoBold = const TextStyle(
+  static TextStyle inriaSansBold = const TextStyle(
     fontFamily: "inria_Sans",
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
 
-  static TextStyle nunitoBlack = const TextStyle(
+  static TextStyle inriaSansBlack = const TextStyle(
     fontFamily: "inria_Sans",
     fontWeight: FontWeight.w800,
     color: AppColors.black,

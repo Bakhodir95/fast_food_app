@@ -112,42 +112,40 @@ class _OrderScreenState extends State<OrderScreen> {
                 },
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "192 000 so’m",
-                      style: CustomFonts.inriaSans12maingrey,
-                    ),
-                    Text(
-                      "149 000 so’m",
-                      style: CustomFonts.inriaSans18grey,
-                    ),
-                  ],
-                ),
-                Text(
-                  "40 daqiqa",
-                  style: CustomFonts.inriaSans18grey,
-                ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.whiteGrey),
-                      borderRadius: BorderRadius.circular(15.r),
-                    ),
-                    child: UniversalButtonWidget(
-                        function: () {},
-                        color: AppColors.whiteWhite,
-                        child: Text(
-                          "PROMO KOD",
-                          style: CustomFonts.inriaSans14,
-                        )),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                "192 000 so’m",
+                style: CustomFonts.inriaSans12maingrey,
+              ),
+              subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "149 000 so’m",
+                    style: CustomFonts.inriaSans18grey,
                   ),
-                )
-              ],
+                  Text(
+                    "40 daqiqa",
+                    style: CustomFonts.inriaSans18grey,
+                  ),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.whiteGrey),
+                        borderRadius: BorderRadius.circular(15.r),
+                      ),
+                      child: UniversalButtonWidget(
+                          function: () {},
+                          color: AppColors.whiteWhite,
+                          child: Text(
+                            "PROMO KOD",
+                            style: CustomFonts.inriaSans14,
+                          )),
+                    ),
+                  )
+                ],
+              ),
             ),
             Gap(10.h),
             UniversalButtonWidget(

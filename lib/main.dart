@@ -20,10 +20,10 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           theme: ThemeData(
-            scaffoldBackgroundColor: const Color(0xFFFFFFFF).withOpacity(0.9),
+            scaffoldBackgroundColor: const Color(0xFFFFFFFF),
           ),
           debugShowCheckedModeBanner: false,
-          home: RegisterScreen(),
+          home: MainScreen(),
         );
       },
     );

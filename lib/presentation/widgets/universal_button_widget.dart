@@ -7,6 +7,8 @@ class UniversalButtonWidget extends StatelessWidget {
   final Widget child;
   final Color? color;
   final Color? borderColor;
+  final double? height;
+  final double? width;
 
   const UniversalButtonWidget({
     super.key,
@@ -14,13 +16,15 @@ class UniversalButtonWidget extends StatelessWidget {
     this.borderColor,
     required this.child,
     required this.color,
+    this.height,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: 50.h,
+      width: width ?? double.infinity,
+      height: height ?? 50.h,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           side: BorderSide(color: borderColor ?? Colors.transparent),

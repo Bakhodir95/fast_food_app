@@ -14,6 +14,8 @@ class LocationScreen extends StatefulWidget {
   State<LocationScreen> createState() => _LocationScreenState();
 }
 
+late final GlobalKey<ScaffoldState> scaffoldKey;
+
 class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class _LocationScreenState extends State<LocationScreen> {
               padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [const HeaderWidget(), Gap(10.h), LocationWidget()],
+                children: [HeaderWidget(), Gap(10.h), LocationWidget()],
               ),
             ),
           ),

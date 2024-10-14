@@ -55,338 +55,214 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const HeaderWidget(),
-                  Gap(9.h),
-                  Stack(
-                    children: [
-                      Container(
-                        width: 382.w,
-                        height: 187.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                            image: AssetImage("assets/images/kfc.png"),
-                            fit: BoxFit.fill,
-                          ),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const HeaderWidget(),
+                Gap(9.h),
+                Stack(
+                  children: [
+                    Container(
+                      width: 382.w,
+                      height: 187.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                          image: AssetImage("assets/images/kfc.png"),
+                          fit: BoxFit.fill,
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16, horizontal: 15),
-                        width: 382.w,
-                        height: 187.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: const LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Color.fromRGBO(217, 217, 217, 0),
-                              Color.fromRGBO(38, 38, 38, 0.67),
-                              Color.fromRGBO(35, 35, 35, 0.76),
-                            ],
-                            stops: [0.0, 0.595, 0.98],
-                          ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16, horizontal: 15),
+                      width: 382.w,
+                      height: 187.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color.fromRGBO(217, 217, 217, 0),
+                            Color.fromRGBO(38, 38, 38, 0.67),
+                            Color.fromRGBO(35, 35, 35, 0.76),
+                          ],
+                          stops: [0.0, 0.595, 0.98],
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "KFC endilikda arzonlashti",
-                              style: CustomFonts.inriaSans18w700,
-                            ),
-                            Text(
-                              "Endi 1 kilogram KFC’ni atigi 30 ming so’mga harid qilishingiz mumkin!",
-                              style: CustomFonts.inriaSans14white,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "KFC endilikda arzonlashti",
+                            style: CustomFonts.inriaSans18w700,
+                          ),
+                          Text(
+                            "Endi 1 kilogram KFC’ni atigi 30 ming so’mga harid qilishingiz mumkin!",
+                            style: CustomFonts.inriaSans14white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(),
+                  child: SvgPicture.asset("assets/svgs/pagination.svg"),
+                ),
+                GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 3.5,
+                  ),
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    bool isSelected = _selectedIndex == index;
+
+                    return InkWell(
+                      borderRadius: BorderRadius.circular(15),
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = index;
+                          itemCount = 1;
+                        });
+                      },
+                      child: Ink(
+                        width: 183.w,
+                        height: 35.h,
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? AppColors.mainButtonColor
+                              : AppColors.whiteWhite,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                  SvgPicture.asset("assets/svgs/pagination.svg"),
-                  GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      childAspectRatio: 3.5,
-                    ),
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      bool isSelected = _selectedIndex == index;
-
-                      return InkWell(
-                        borderRadius: BorderRadius.circular(15),
-                        onTap: () {
-                          setState(() {
-                            _selectedIndex = index;
-                            itemCount = 1;
-                          });
-                        },
-                        child: Ink(
-                          width: 183.w,
-                          height: 35.h,
-                          decoration: BoxDecoration(
-                            color: isSelected
-                                ? AppColors.mainButtonColor
-                                : AppColors.whiteWhite,
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                  width: 40.w,
-                                  height: 40.h,
-                                  child: Image.asset(items[index].image)),
-                              const Gap(8),
-                              Text(
-                                items[index].text,
-                                style: isSelected
-                                    ? CustomFonts.inriaSans14white
-                                    : CustomFonts.inriaSans14,
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  const Gap(29.7),
-                  GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            content: Container(
-                              width: double.infinity,
-                              height: 460,
-                              decoration: BoxDecoration(
-                                  color: AppColors.whiteWhite,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: 139.w,
-                                    height: 110.h,
-                                    child: Image.asset(
-                                      items[_selectedIndex].image,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                  Gap(12.h),
-                                  Text(
-                                    items[_selectedIndex].text,
-                                    style: CustomFonts.inriaSans28,
-                                  ),
-                                  Gap(8.h),
-                                  Text(
-                                    "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
-                                    style: CustomFonts.inriaSans144,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Gap(34.h),
-                                  const Text(
-                                    "24 000 so’m",
-                                    style: TextStyle(
-                                        decoration: TextDecoration.lineThrough,
-                                        decorationColor: AppColors.whiteGrey,
-                                        color: AppColors.whiteGrey,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w300),
-                                  ),
-                                  Text(
-                                    "24 000 so’m",
-                                    style: CustomFonts.inriaSans24,
-                                  ),
-                                  Gap(21.h),
-                                  UniversalButtonWidget(
-                                    function: () {
-                                      addCartItems(
-                                          items[_selectedIndex], itemCount);
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (ctx) => OrderScreen(
-                                            cartItems: items,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    color: null,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Text("Savatga qo’shish"),
-                                        const Gap(8),
-                                        Icon(
-                                          Icons.shopping_cart_outlined,
-                                          color: AppColors.white,
-                                          size: 13.sp,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 34.w,
-                          height: 34.h,
-                          child: Image.asset(items[_selectedIndex].image),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12, right: 2),
-                          child: Container(
-                            width: 2.w,
-                            height: 34.h,
-                            decoration:
-                                const BoxDecoration(color: AppColors.yellow),
-                          ),
-                        ),
-                        Text(
-                          items[_selectedIndex].text,
-                          style: CustomFonts.inriaSans20,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Gap(20),
-                  Container(
-                    width: double.infinity,
-                    height: 276,
-                    decoration: BoxDecoration(
-                        color: AppColors.whiteWhite,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                            width: 130.w,
-                            height: 106.h,
-                            child: Image.asset(
-                                "assets/images/selectedburger.png")),
-                        Gap(12.h),
-                        Text(
-                          "Burger",
-                          style: CustomFonts.inriaSans28,
-                        ),
-                        Text(
-                          "24 000 so’m",
-                          style: CustomFonts.inriaSans18grey,
-                        ),
-                        Gap(21.h),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 23),
-                          child: UniversalButtonWidget(
-                              function: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (ctx) => OrderScreen(
-                                              cartItems: items,
-                                            )));
-                              },
-                              color: null,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text("Savatga qo’shish"),
-                                  const Gap(8),
-                                  Icon(
-                                    Icons.shopping_cart_outlined,
-                                    color: AppColors.white,
-                                    size: 13.sp,
-                                  )
-                                ],
-                              )),
-                        )
-                      ],
-                    ),
-                  ),
-                  Gap(20.h),
-                  Container(
-                    width: double.infinity,
-                    height: 276,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.whiteWhite),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                            width: 130.w,
-                            height: 106.h,
-                            child: Image.asset(
-                                "assets/images/selectedburger.png")),
-                        const Gap(12),
-                        Text(
-                          "Burger",
-                          style: CustomFonts.inriaSans28,
-                        ),
-                        Text(
-                          "24 000 so’m",
-                          style: CustomFonts.inriaSans18grey,
-                        ),
-                        const Gap(21),
-                        Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.remove,
-                                  size: 18,
-                                )),
-                            const Gap(21),
+                            SizedBox(
+                                width: 40.w,
+                                height: 40.h,
+                                child: Image.asset(items[index].image)),
+                            const Gap(8),
                             Text(
-                              itemCount.toString(),
-                              style: const TextStyle(fontSize: 18),
+                              items[index].text,
+                              style: isSelected
+                                  ? CustomFonts.inriaSans14white
+                                  : CustomFonts.inriaSans14,
                             ),
-                            const Gap(21),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.add,
-                                  size: 18,
-                                )),
                           ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Gap(45.h),
-                  Row(
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const Gap(29.7),
+                GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.white.withOpacity(0.9),
+                          content: Container(
+                            width: double.infinity,
+                            height: 460,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 139.w,
+                                  height: 110.h,
+                                  child: Image.asset(
+                                    items[_selectedIndex].image,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Gap(12.h),
+                                Text(
+                                  items[_selectedIndex].text,
+                                  style: CustomFonts.inriaSans28,
+                                ),
+                                Gap(8.h),
+                                Text(
+                                  "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
+                                  style: CustomFonts.inriaSans144,
+                                  textAlign: TextAlign.center,
+                                ),
+                                Gap(34.h),
+                                const Text(
+                                  "24 000 so’m",
+                                  style: TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                      decorationColor: AppColors.whiteGrey,
+                                      color: AppColors.whiteGrey,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                                Text(
+                                  "24 000 so’m",
+                                  style: CustomFonts.inriaSans24,
+                                ),
+                                Gap(21.h),
+                                UniversalButtonWidget(
+                                  function: () {
+                                    addCartItems(
+                                        items[_selectedIndex], itemCount);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (ctx) => OrderScreen(
+                                          cartItems: items,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  color: null,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text("Savatga qo’shish"),
+                                      const Gap(8),
+                                      Icon(
+                                        Icons.shopping_cart_outlined,
+                                        color: AppColors.white,
+                                        size: 13.sp,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Row(
                     children: [
+                      SizedBox(
+                        width: 34.w,
+                        height: 34.h,
+                        child: Image.asset(items[_selectedIndex].image),
+                      ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 10),
+                        padding: const EdgeInsets.only(left: 12, right: 2),
                         child: Container(
                           width: 2.w,
                           height: 34.h,
@@ -395,121 +271,243 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       Text(
-                        "Ommabop",
+                        items[_selectedIndex].text,
                         style: CustomFonts.inriaSans20,
+                      ),
+                    ],
+                  ),
+                ),
+                const Gap(20),
+                Container(
+                  width: double.infinity,
+                  height: 276,
+                  decoration: BoxDecoration(
+                      color: AppColors.whiteWhite,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          width: 130.w,
+                          height: 106.h,
+                          child:
+                              Image.asset("assets/images/selectedburger.png")),
+                      Gap(12.h),
+                      Text(
+                        "Burger",
+                        style: CustomFonts.inriaSans28,
+                      ),
+                      Text(
+                        "24 000 so’m",
+                        style: CustomFonts.inriaSans18grey,
+                      ),
+                      Gap(21.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 23),
+                        child: UniversalButtonWidget(
+                            function: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (ctx) => OrderScreen(
+                                            cartItems: items,
+                                          )));
+                            },
+                            color: null,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text("Savatga qo’shish"),
+                                const Gap(8),
+                                Icon(
+                                  Icons.shopping_cart_outlined,
+                                  color: AppColors.white,
+                                  size: 13.sp,
+                                )
+                              ],
+                            )),
                       )
                     ],
                   ),
-                  Gap(10.h),
-                  Row(
+                ),
+                Gap(20.h),
+                Container(
+                  width: double.infinity,
+                  height: 276,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.whiteWhite),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 138.w,
-                        height: 184.h,
-                        child: Image.asset("assets/images/chizburger.png"),
+                          width: 130.w,
+                          height: 106.h,
+                          child:
+                              Image.asset("assets/images/selectedburger.png")),
+                      const Gap(12),
+                      Text(
+                        "Burger",
+                        style: CustomFonts.inriaSans28,
                       ),
-                      Gap(8.w),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Gap(11.h),
-                            Text(
-                              "Chizburger",
-                              style: CustomFonts.inriaSans24,
-                            ),
-                            Gap(5.h),
-                            Text(
-                              "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
-                              style: CustomFonts.inriaSans10whiteGrey,
-                            ),
-                            Gap(44.h),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.remove,
-                                      size: 18.sp,
-                                    )),
-                                const Gap(21),
-                                Text(
-                                  famousItemCount.toString(),
-                                  style: const TextStyle(fontSize: 18),
-                                ),
-                                Gap(21.h),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.add,
-                                      size: 18,
-                                    )),
-                              ],
-                            ),
-                          ],
-                        ),
+                      Text(
+                        "24 000 so’m",
+                        style: CustomFonts.inriaSans18grey,
                       ),
+                      const Gap(21),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.remove,
+                                size: 18,
+                              )),
+                          const Gap(21),
+                          Text(
+                            itemCount.toString(),
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          const Gap(21),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.add,
+                                size: 18,
+                              )),
+                        ],
+                      )
                     ],
                   ),
-                  Gap(15.h),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 138.w,
-                        height: 184.h,
-                        child: Image.asset("assets/images/chizburger.png"),
+                ),
+                Gap(45.h),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Container(
+                        width: 2.w,
+                        height: 34.h,
+                        decoration:
+                            const BoxDecoration(color: AppColors.yellow),
                       ),
-                      Gap(12.w),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Gap(11.h),
-                            Text(
-                              "Chizburger",
-                              style: CustomFonts.inriaSans24,
-                            ),
-                            Gap(5.h),
-                            Text(
-                              "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
-                              style: CustomFonts.inriaSans10whiteGrey,
-                            ),
-                            Gap(47.h),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 28.h,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.mainButtonColor,
-                                    foregroundColor: AppColors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                  ),
+                    ),
+                    Text(
+                      "Ommabop",
+                      style: CustomFonts.inriaSans20,
+                    )
+                  ],
+                ),
+                Gap(10.h),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 138.w,
+                      height: 184.h,
+                      child: Image.asset("assets/images/chizburger.png"),
+                    ),
+                    Gap(8.w),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Gap(11.h),
+                          Text(
+                            "Chizburger",
+                            style: CustomFonts.inriaSans24,
+                          ),
+                          Gap(5.h),
+                          Text(
+                            "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
+                            style: CustomFonts.inriaSans10whiteGrey,
+                          ),
+                          Gap(44.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
                                   onPressed: () {},
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("Savatga qo’shish",
-                                          style: CustomFonts.inriaSans14white),
-                                      const Gap(8),
-                                      Icon(
-                                        Icons.shopping_cart_outlined,
-                                        color: AppColors.white,
-                                        size: 13.sp,
-                                      )
-                                    ],
+                                  icon: Icon(
+                                    Icons.remove,
+                                    size: 18.sp,
                                   )),
-                            ),
-                            Gap(15.h)
-                          ],
-                        ),
+                              const Gap(21),
+                              Text(
+                                famousItemCount.toString(),
+                                style: const TextStyle(fontSize: 18),
+                              ),
+                              Gap(21.h),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.add,
+                                    size: 18,
+                                  )),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
-                  )
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                Gap(15.h),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 138.w,
+                      height: 184.h,
+                      child: Image.asset("assets/images/chizburger.png"),
+                    ),
+                    Gap(12.w),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Gap(11.h),
+                          Text(
+                            "Chizburger",
+                            style: CustomFonts.inriaSans24,
+                          ),
+                          Gap(5.h),
+                          Text(
+                            "Mol go'shti kotleti, pomidor, aysberg, pishloq, tuzlangan bodring, piyoz, xantal, ketchup, mayonez",
+                            style: CustomFonts.inriaSans10whiteGrey,
+                          ),
+                          Gap(47.h),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 28,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.mainButtonColor,
+                                  foregroundColor: AppColors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                onPressed: () {},
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Savatga qo’shish",
+                                        style: CustomFonts.inriaSans14white),
+                                    const Gap(8),
+                                    Icon(
+                                      Icons.shopping_cart_outlined,
+                                      color: AppColors.white,
+                                      size: 13.sp,
+                                    )
+                                  ],
+                                )),
+                          ),
+                          Gap(15.h)
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
         ),

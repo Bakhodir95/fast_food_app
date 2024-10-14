@@ -40,13 +40,12 @@ flutter:
     - assets/fonts/
     - .env
 
-  fonts:
-    - family: inria_Sans
-      fonts:
-        - asset: fonts/inriaSans/InriaSans-Bold.ttf 
-        - asset: fonts/inriaSans/InriaSans-BoldItalic.ttf 
-        - asset: fonts/inriaSans/InriaSans-Italic.ttf 
-        - asset: fonts/inriaSans/InriaSans-Light.ttf 
-        - asset: fonts/inriaSans/InriaSans-LightItalic.ttf 
-        - asset: fonts/inriaSans/InriaSans-Regular.ttf
-  # You can add more font families below if needed
+  # fonts:
+  #   - family: inria_Sans
+  #     fonts:
+  #       - assets: fonts/inriaSans/InriaSans-Bold.ttf 
+  #       - assets: fonts/inriaSans/InriaSans-BoldItalic.ttf 
+  #       - assets: fonts/inriaSans/InriaSans-Italic.ttf 
+  #       - assets: fonts/inriaSans/InriaSans-Light.ttf 
+  #       - assets: fonts/inriaSans/InriaSans-LightItalic.ttf 
+  #       - assets: fonts/inriaSans/InriaSans-Regular.ttf

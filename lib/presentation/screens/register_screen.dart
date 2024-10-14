@@ -56,7 +56,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         CustomTextfield(
                           inputFormatters: [
-                            MaskedInputFormatter("+998 (##) ###-##-##"),
+                            MaskedInputFormatter("+### (##) ###-##-##"),
                           ],
                           controller: _phoneController,
                           prefixIcon: const Icon(CupertinoIcons.phone_fill),
