@@ -27,8 +27,6 @@ class _MainScreenState extends State<MainScreen> {
       setState(() {
         orders.add({"item": cartItem, "count": count});
       });
-    } else {
-      print('Item already in cart');
     }
   }
 
@@ -243,6 +241,7 @@ class _MainScreenState extends State<MainScreen> {
                                     addCartItems(
                                         ListItems.items[_selectedIndex],
                                         itemCount);
+                                    Navigator.pop(context);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

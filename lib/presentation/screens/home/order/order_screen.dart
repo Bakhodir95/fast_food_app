@@ -24,13 +24,9 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   void _decrement(CartItem item) {
-    if (item.quantity > 1) {
+    if (item.quantity > 0) {
       setState(() {
         item.quantity--;
-      });
-    } else {
-      setState(() {
-        widget.cartItems.remove(item);
       });
     }
   }
