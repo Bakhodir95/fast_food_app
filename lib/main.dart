@@ -1,6 +1,4 @@
-import 'package:fast_food_app/presentation/screens/about_us_screen.dart';
-import 'package:fast_food_app/presentation/screens/main_screen.dart';
-import 'package:fast_food_app/presentation/screens/register_screen.dart';
+import 'package:fast_food_app/presentation/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: const Color(0xFFFFFFFF),
           ),
           debugShowCheckedModeBanner: false,
-          home: MainScreen(),
+          home: RegisterScreen(),
         );
       },
     );

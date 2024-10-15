@@ -1,4 +1,4 @@
-import 'package:fast_food_app/presentation/screens/confirmation_screen.dart';
+import 'package:fast_food_app/presentation/screens/auth/confirmation_screen.dart';
 import 'package:fast_food_app/presentation/widgets/custom_textfield.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';

@@ -1,6 +1,7 @@
-import 'package:fast_food_app/presentation/screens/main_screen.dart';
+import 'package:fast_food_app/presentation/screens/home/main_screen.dart';
 import 'package:fast_food_app/presentation/widgets/pin_widegt.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
+import 'package:fast_food_app/utils/app_size.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,7 +44,7 @@ class ConfirmationScreen extends StatelessWidget {
                       Text("SMS", style: CustomFonts.inriaSans24),
                       Text("Telefon raqamingizga kelgan SMS kodni kiriting",
                           style: CustomFonts.inriaSans14),
-                      const Gap(9),
+                      Gap(10),
                       const PinThemeWidget(),
                     ],
                   ),

@@ -9,6 +9,11 @@ class CustomFonts {
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
   );
+  static TextStyle inriaSans24700 = GoogleFonts.inriaSans(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.grey,
+  );
   static TextStyle inriaSans18 = GoogleFonts.inriaSans(
     fontSize: 18.sp,
     fontWeight: FontWeight.w400,
@@ -30,6 +35,11 @@ class CustomFonts {
     fontWeight: FontWeight.w300,
     color: AppColors.grey,
   );
+  static TextStyle inriaSans12grey = GoogleFonts.inriaSans(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w300,
+    color: AppColors.grey,
+  );
   static TextStyle inriaSans18w700 = GoogleFonts.inriaSans(
     fontSize: 18.sp,
     fontWeight: FontWeight.w700,
@@ -46,12 +56,12 @@ class CustomFonts {
     color: AppColors.whiteGrey,
   );
   static TextStyle inriaSans14white = GoogleFonts.inriaSans(
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w300,
     color: AppColors.white,
   );
   static TextStyle inriaSans10 = GoogleFonts.inriaSans(
-    fontSize: 10.sp,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w300,
     color: AppColors.mainGrey,
   );
@@ -65,16 +75,27 @@ class CustomFonts {
     fontWeight: FontWeight.w400,
     color: AppColors.white,
   );
+  static TextStyle inriaSans16300 = GoogleFonts.inriaSans(
+    fontSize: 16,
+    fontWeight: FontWeight.w300,
+    color: AppColors.mainGrey,
+  );
   static TextStyle inriaSans16grey = GoogleFonts.inriaSans(
     fontSize: 16.sp,
     fontWeight: FontWeight.w300,
     color: AppColors.mainGrey,
   );
-  static TextStyle inriaSans16300 = GoogleFonts.inriaSans(
+  static TextStyle inriaSans16400 = GoogleFonts.inriaSans(
     fontSize: 16.sp,
-    fontWeight: FontWeight.w300,
-    color: AppColors.white,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
   );
+  static TextStyle inriaSans16400r = GoogleFonts.inriaSans(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.raqamlarda,
+  );
+
   static TextStyle inriaSans20 = GoogleFonts.inriaSans(
     fontSize: 20.sp,
     fontWeight: FontWeight.w400,

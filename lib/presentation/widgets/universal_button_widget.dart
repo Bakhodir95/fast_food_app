@@ -1,6 +1,5 @@
 import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UniversalButtonWidget extends StatelessWidget {
   final VoidCallback function;
@@ -24,7 +23,7 @@ class UniversalButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? double.infinity,
-      height: height ?? 50.h,
+      // height: height ?? 50.h,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           side: BorderSide(color: borderColor ?? Colors.transparent),

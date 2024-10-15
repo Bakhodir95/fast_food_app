@@ -8,7 +8,7 @@ class PinThemeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final pinTheme = PinTheme(
       width: 56,
-      height: 56,
+      height: 68,
       textStyle: const TextStyle(fontSize: 20, color: Colors.black),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

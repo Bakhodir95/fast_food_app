@@ -1,13 +1,13 @@
 import 'package:fast_food_app/domain/entities/cart_item.dart';
-import 'package:fast_food_app/presentation/screens/order_screen.dart';
+import 'package:fast_food_app/presentation/screens/home/order/order_screen.dart';
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
 import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
+import 'package:fast_food_app/utils/list_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:svg_flutter/svg.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,20 +17,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<CartItem> items = [
-    CartItem(image: "assets/images/burger.png", text: "Burger"),
-    CartItem(image: "assets/images/lavash.png", text: "Lavash"),
-    CartItem(image: "assets/images/donar.png", text: "Donar"),
-    CartItem(image: "assets/images/sendwich.png", text: "Sendwich"),
-    CartItem(image: "assets/images/pitsa.png", text: "Pitsa"),
-    CartItem(image: "assets/images/garnir.png", text: "Garnir"),
-    CartItem(image: "assets/images/kombo.png", text: "Kombo"),
-    CartItem(image: "assets/images/sous.png", text: "Sous"),
-    CartItem(image: "assets/images/qoshimcha.png", text: "Qo'shimcha"),
-    CartItem(image: "assets/images/ichimlik.png", text: "Ichimlik"),
-    CartItem(image: "assets/images/salat.png", text: "Salat"),
-  ];
-
   final List<Map<String, dynamic>> orders = [];
 
   void addCartItems(CartItem cartItem, int count) {
@@ -49,6 +35,7 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   int itemCount = 0;
   int famousItemCount = 0;
+  int currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -62,58 +49,88 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 const HeaderWidget(),
                 Gap(9.h),
-                Stack(
-                  children: [
-                    Container(
-                      width: 382.w,
-                      height: 187.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
-                          image: AssetImage("assets/images/kfc.png"),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 15),
-                      width: 382.w,
-                      height: 187.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Color.fromRGBO(217, 217, 217, 0),
-                            Color.fromRGBO(38, 38, 38, 0.67),
-                            Color.fromRGBO(35, 35, 35, 0.76),
+                SizedBox(
+                  height: 187.h,
+                  child: PageView.builder(
+                    itemCount: ListItems.adItems.length,
+                    onPageChanged: (index) {
+                      setState(() {
+                        currentPage = index;
+                      });
+                    },
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 382.w,
+                              height: 187.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      ListItems.adItems[index].imageUrl),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 15),
+                              width: 382.w,
+                              height: 187.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Color.fromRGBO(217, 217, 217, 0),
+                                    Color.fromRGBO(38, 38, 38, 0.67),
+                                    Color.fromRGBO(35, 35, 35, 0.76),
+                                  ],
+                                  stops: [0.0, 0.595, 0.98],
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    ListItems.adItems[index].title,
+                                    style: CustomFonts.inriaSans18w700,
+                                  ),
+                                  Text(
+                                    ListItems.adItems[index].description,
+                                    style: CustomFonts.inriaSans14white,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
-                          stops: [0.0, 0.595, 0.98],
                         ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "KFC endilikda arzonlashti",
-                            style: CustomFonts.inriaSans18w700,
-                          ),
-                          Text(
-                            "Endi 1 kilogram KFC’ni atigi 30 ming so’mga harid qilishingiz mumkin!",
-                            style: CustomFonts.inriaSans14white,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                      );
+                    },
+                  ),
                 ),
-                DecoratedBox(
-                  decoration: BoxDecoration(),
-                  child: SvgPicture.asset("assets/svgs/pagination.svg"),
+                Gap(8.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(ListItems.adItems.length, (index) {
+                    return Container(
+                      width: currentPage == index ? 33.w : 8.w,
+                      height: currentPage == index ? 12.h : 8.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: currentPage == index
+                            ? AppColors.white2White
+                            : AppColors.whiteWhite,
+                      ),
+                    );
+                  }),
                 ),
+                Gap(10),
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -123,7 +140,7 @@ class _MainScreenState extends State<MainScreen> {
                     mainAxisSpacing: 12,
                     childAspectRatio: 3.5,
                   ),
-                  itemCount: items.length,
+                  itemCount: ListItems.items.length,
                   itemBuilder: (context, index) {
                     bool isSelected = _selectedIndex == index;
 
@@ -155,10 +172,11 @@ class _MainScreenState extends State<MainScreen> {
                             SizedBox(
                                 width: 40.w,
                                 height: 40.h,
-                                child: Image.asset(items[index].image)),
+                                child:
+                                    Image.asset(ListItems.items[index].image)),
                             const Gap(8),
                             Text(
-                              items[index].text,
+                              ListItems.items[index].text,
                               style: isSelected
                                   ? CustomFonts.inriaSans14white
                                   : CustomFonts.inriaSans14,
@@ -190,13 +208,13 @@ class _MainScreenState extends State<MainScreen> {
                                   width: 139.w,
                                   height: 110.h,
                                   child: Image.asset(
-                                    items[_selectedIndex].image,
+                                    ListItems.items[_selectedIndex].image,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
                                 Gap(12.h),
                                 Text(
-                                  items[_selectedIndex].text,
+                                  ListItems.items[_selectedIndex].text,
                                   style: CustomFonts.inriaSans28,
                                 ),
                                 Gap(8.h),
@@ -223,12 +241,13 @@ class _MainScreenState extends State<MainScreen> {
                                 UniversalButtonWidget(
                                   function: () {
                                     addCartItems(
-                                        items[_selectedIndex], itemCount);
+                                        ListItems.items[_selectedIndex],
+                                        itemCount);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (ctx) => OrderScreen(
-                                          cartItems: items,
+                                          cartItems: ListItems.items,
                                         ),
                                       ),
                                     );
@@ -259,7 +278,8 @@ class _MainScreenState extends State<MainScreen> {
                       SizedBox(
                         width: 34.w,
                         height: 34.h,
-                        child: Image.asset(items[_selectedIndex].image),
+                        child:
+                            Image.asset(ListItems.items[_selectedIndex].image),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 12, right: 2),
@@ -271,7 +291,7 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       Text(
-                        items[_selectedIndex].text,
+                        ListItems.items[_selectedIndex].text,
                         style: CustomFonts.inriaSans20,
                       ),
                     ],
@@ -310,7 +330,7 @@ class _MainScreenState extends State<MainScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (ctx) => OrderScreen(
-                                            cartItems: items,
+                                            cartItems: ListItems.items,
                                           )));
                             },
                             color: null,

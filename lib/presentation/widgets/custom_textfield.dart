@@ -16,7 +16,8 @@ class CustomTextfield extends StatelessWidget {
   final String? errorText;
   final TextStyle? hintStyle;
   final Function(String)? onChanged;
-  final List<TextInputFormatter>? inputFormatters; // Add this line
+  final List<TextInputFormatter>? inputFormatters;
+  final double borderRadius; // Add this line
 
   const CustomTextfield({
     super.key,
@@ -33,7 +34,8 @@ class CustomTextfield extends StatelessWidget {
     this.errorText,
     this.onChanged,
     this.hintStyle,
-    this.inputFormatters, // Add this line
+    this.inputFormatters,
+    this.borderRadius = 10,
   });
 
   @override
@@ -56,18 +58,18 @@ class CustomTextfield extends StatelessWidget {
         hintText: hintText,
         labelText: labeltext,
         hintStyle: const TextStyle(color: Colors.grey),
-        border: _returnBorder(),
-        errorBorder: _returnBorder(Colors.red),
-        focusedBorder: _returnBorder(),
-        enabledBorder: _returnBorder(),
+        border: _returnBorder(borderRadius),
+        errorBorder: _returnBorder(borderRadius, Colors.red),
+        focusedBorder: _returnBorder(borderRadius),
+        enabledBorder: _returnBorder(borderRadius),
       ),
     );
   }
 }
 
-OutlineInputBorder _returnBorder([Color? color]) {
+OutlineInputBorder _returnBorder(double radius, [Color? color]) {
   return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(8),
+    borderRadius: BorderRadius.circular(radius),
     borderSide: BorderSide(color: color ?? AppColors.textfieldBorder),
   );
 }

@@ -1,4 +1,4 @@
-import 'package:fast_food_app/presentation/screens/header_screen.dart';
+import 'package:fast_food_app/presentation/screens/home/header/header_screen.dart';
 import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +19,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
       children: [
         SizedBox(
           width: 74.w,
-          height: 40.h,
+          height: 44.h,
           child: Image.asset("assets/images/header.png"),
         ),
         Row(
@@ -45,8 +45,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                         HeaderScreen(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0); // Start from the right
-                      const end = Offset.zero; // End at the original position
+                      const begin = Offset(1.0, 0.0); 
+                      const end = Offset.zero; 
                       const curve = Curves.easeInOut;
 
                       var tween = Tween(begin: begin, end: end)

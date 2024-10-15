@@ -1,6 +1,8 @@
-import 'package:fast_food_app/presentation/screens/about_us_screen.dart';
-import 'package:fast_food_app/presentation/screens/branch_screen.dart';
-import 'package:fast_food_app/presentation/screens/main_screen.dart';
+import 'package:fast_food_app/presentation/screens/aboutUs/about_us_screen.dart';
+import 'package:fast_food_app/presentation/screens/location/branch_screen.dart';
+import 'package:fast_food_app/presentation/screens/home/main_screen.dart';
+import 'package:fast_food_app/presentation/screens/news/news_screen.dart';
+import 'package:fast_food_app/presentation/screens/profile/profile_screen.dart';
 import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +55,20 @@ class HeaderScreen extends StatelessWidget {
                 onTap: () => {
                       Navigator.pop(context),
                       Navigator.push(context,
+                          MaterialPageRoute(builder: (ctx) => ProfileScreen())),
+                    },
+                title: Text(
+                  " - Profil",
+                  style: CustomFonts.inriaSans24,
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: AppColors.mainGrey,
+                )),
+            ListTile(
+                onTap: () => {
+                      Navigator.pop(context),
+                      Navigator.push(context,
                           MaterialPageRoute(builder: (ctx) => BranchScreen())),
                     },
                 title: Text(
@@ -84,7 +100,7 @@ class HeaderScreen extends StatelessWidget {
                 onTap: () => {
                       Navigator.pop(context),
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (ctx) => BranchScreen())),
+                          MaterialPageRoute(builder: (ctx) => NewsScreen())),
                     },
                 title: Text(
                   " - Yangiliklar",

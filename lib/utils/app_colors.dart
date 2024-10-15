@@ -16,14 +16,15 @@ class AppColors {
   static const Color grey = Color.fromRGBO(91, 91, 91, 1);
   static const Color whiteGrey = Color.fromRGBO(169, 169, 169, 1);
   static const Color whiteWhite = Color.fromRGBO(246, 246, 246, 0.9);
+  static const Color white2White = Color.fromRGBO(237, 237, 237, 1);
 
   static const Color cardColor = Color.fromRGBO(135, 135, 135, 1);
+  static const Color whitegreen = Color.fromRGBO(26, 222, 0, 1);
 
   static const Color menuColor = Color.fromRGBO(0, 0, 0, 0.05);
+  static const Color raqamlarda = Color.fromRGBO(78, 78, 78, 1);
 
   static const Color textfieldBorder = Color.fromRGBO(230, 230, 230, 1);
   static const Color selectedBlack = Color.fromRGBO(43, 43, 43, 1);
   static const Color containerBorderColor = Color.fromRGBO(230, 230, 230, 1);
-
-
 }

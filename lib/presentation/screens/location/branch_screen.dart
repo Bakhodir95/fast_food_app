@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
 import 'package:fast_food_app/presentation/widgets/branch_container_widget.dart';
 import 'package:fast_food_app/utils/app_colors.dart';
@@ -29,7 +27,7 @@ class _LocationScreenState extends State<BranchScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const HeaderWidget(),
-                  Gap(30.h),
+                  Gap(30),
                   Row(
                     children: [
                       Padding(
@@ -48,16 +46,11 @@ class _LocationScreenState extends State<BranchScreen> {
                     ],
                   ),
                   Gap(16.h),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      LocationContainerWidget(),
-                      LocationContainerWidget(),
-                      LocationContainerWidget(),
-                      LocationContainerWidget(),
-                      LocationContainerWidget()
-                    ],
-                  ),
+                  LocationContainerWidget(),
+                  LocationContainerWidget(),
+                  LocationContainerWidget(),
+                  LocationContainerWidget(),
+                  LocationContainerWidget(),
                 ],
               ),
             ),

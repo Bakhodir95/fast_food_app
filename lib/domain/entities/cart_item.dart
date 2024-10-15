@@ -1,7 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-// ignore: must_be_immutable
-class CartItem extends Equatable {
+class CartItem {
   String text;
   String image;
   int quantity;
@@ -9,16 +6,10 @@ class CartItem extends Equatable {
   CartItem({
     required this.image,
     required this.text,
-    this.quantity = 1,
+    this.quantity = 0,
   });
 
   factory CartItem.fromMap(Map<String, dynamic> map) {
     return CartItem(image: map['image'], text: map['text']);
   }
-
-  @override
-  List<Object?> get props => [
-        text,
-        image,
-      ];
 }

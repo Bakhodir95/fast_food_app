@@ -1,8 +1,5 @@
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
-import 'package:fast_food_app/presentation/widgets/branch_container_widget.dart';
 import 'package:fast_food_app/presentation/widgets/location_widget.dart';
-import 'package:fast_food_app/utils/app_colors.dart';
-import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -28,7 +25,11 @@ class _LocationScreenState extends State<LocationScreen> {
               padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [HeaderWidget(), Gap(10.h), LocationWidget()],
+                children: [
+                  HeaderWidget(),
+                  Gap(10.h),
+                  LocationWidget(),
+                ],
               ),
             ),
           ),
