@@ -17,15 +17,23 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<Map<String, dynamic>> orders = [];
+  final List<CartItem> orders = [];
 
   void addCartItems(CartItem cartItem, int count) {
     final existingItemIndex =
-        orders.indexWhere((order) => order['item'] == cartItem);
+        orders.indexWhere((order) => order.text == cartItem.text);
 
     if (existingItemIndex == -1) {
       setState(() {
-        orders.add({"item": cartItem, "count": count});
+        orders.add(CartItem(
+          image: cartItem.image,
+          text: cartItem.text,
+          quantity: count,
+        ));
+      });
+    } else {
+      setState(() {
+        orders[existingItemIndex].quantity += count;
       });
     }
   }
@@ -246,7 +254,7 @@ class _MainScreenState extends State<MainScreen> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (ctx) => OrderScreen(
-                                          cartItems: ListItems.items,
+                                          cartItems: orders,
                                         ),
                                       ),
                                     );
