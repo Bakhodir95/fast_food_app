@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class BranchScreen extends StatefulWidget {
-  const BranchScreen({super.key});
+class YandexScreen extends StatefulWidget {
+  const YandexScreen({super.key});
 
   @override
-  State<BranchScreen> createState() => _LocationScreenState();
+  State<YandexScreen> createState() => _LocationScreenState();
 }
 
-class _LocationScreenState extends State<BranchScreen> {
+class _LocationScreenState extends State<YandexScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

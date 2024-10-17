@@ -1,4 +1,4 @@
-import 'package:fast_food_app/domain/entities/order_history.dart';
+import 'package:fast_food_app/data/models/order_history.dart';
 import 'package:fast_food_app/presentation/widgets/custom_textfield.dart';
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
 import 'package:fast_food_app/presentation/widgets/sticktext_widget.dart';
@@ -71,9 +71,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   const HeaderWidget(),
                   Gap(30.h),
-                  SticktextWidget(text: "KHATAMOV NURIDDIN"),
+                  const SticktextWidget(text: "KHATAMOV NURIDDIN"),
                   Gap(20.h),
-                  SticktextWidget(
+                  const SticktextWidget(
                     text: "MA’LUMOTLAR",
                     fontSize: 18,
                   ),
@@ -95,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Gap(12.h),
                   Text("Telefon raqamingizni kiriting:",
                       style: CustomFonts.inriaSans10),
-                  SizedBox(
+                  const SizedBox(
                     height: 2,
                   ),
                   CustomTextfield(
@@ -117,14 +117,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Gap(20.h),
                   UniversalButtonWidget(
                       function: () {},
+                      color: AppColors.white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.place_outlined,
                             color: AppColors.mainGrey,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(
@@ -132,18 +133,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             style: CustomFonts.inriaSans14,
                           )
                         ],
-                      ),
-                      color: AppColors.white),
-                  Gap(20),
+                      )),
+                  const Gap(20),
                   UniversalButtonWidget(
                       function: () {},
+                      color: null,
                       child: Text(
                         "Ma’lumotlarni saqlash",
                         style: CustomFonts.inriaSans14white,
-                      ),
-                      color: null),
+                      )),
                   Gap(52.h),
-                  SticktextWidget(
+                  const SticktextWidget(
                     text: "BUYURTMALAR TARIXI",
                     fontSize: 20,
                   ),
@@ -171,11 +171,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 162,
                             borderColor: AppColors.containerBorderColor,
                             function: () {},
+                            color: Colors.white,
                             child: Text(
                               "Hammasi",
                               style: CustomFonts.inriaSans14,
-                            ),
-                            color: Colors.white),
+                            )),
                       ),
                       SizedBox(
                         width: 43.w,
@@ -195,7 +195,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(order.date, style: CustomFonts.inriaSans16300),
                           Container(
                             clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: Image.asset(
                               order.imageUrl,
                               width: 40,

@@ -14,7 +14,7 @@ class Location2Widget extends StatelessWidget {
     zoom: 12,
   );
 
-  final LatLng _markerPosition = LatLng(41.285834, 69.203533);
+  final LatLng _markerPosition = const LatLng(41.285834, 69.203533);
 
   @override
   Widget build(BuildContext context) {

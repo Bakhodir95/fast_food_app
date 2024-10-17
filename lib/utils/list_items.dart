@@ -1,5 +1,5 @@
-import 'package:fast_food_app/domain/entities/ads_item.dart';
-import 'package:fast_food_app/domain/entities/cart_item.dart';
+import 'package:fast_food_app/data/models/ads_item.dart';
+import 'package:fast_food_app/data/models/cart_item.dart';
 
 class ListItems {
   static final List<AdItem> adItems = [

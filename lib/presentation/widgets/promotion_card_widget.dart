@@ -1,4 +1,4 @@
-import 'package:fast_food_app/domain/entities/promotion_item.dart';
+import 'package:fast_food_app/data/models/promotion_item.dart';
 import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
@@ -38,13 +38,13 @@ class PromotionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(promotion.title, style: CustomFonts.inriaSans24700),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(promotion.description, style: CustomFonts.inriaSans14),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Row(
                   children: [
-                    Icon(Icons.calendar_today, size: 16, color: Colors.grey),
-                    SizedBox(width: 4),
+                    const Icon(Icons.calendar_today, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
                     Text(promotion.date, style: CustomFonts.inriaSans14),
                   ],
                 ),

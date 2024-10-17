@@ -1,4 +1,4 @@
-import 'package:fast_food_app/domain/entities/cart_item.dart';
+import 'package:fast_food_app/data/models/cart_item.dart';
 import 'package:fast_food_app/presentation/screens/home/order/order_screen.dart';
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
@@ -136,7 +136,7 @@ class _MainScreenState extends State<MainScreen> {
                     );
                   }),
                 ),
-                Gap(10),
+                const Gap(10),
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -337,7 +337,7 @@ class _MainScreenState extends State<MainScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (ctx) => OrderScreen(
-                                            cartItems: ListItems.items,
+                                            cartItems: orders,
                                           )));
                             },
                             color: null,

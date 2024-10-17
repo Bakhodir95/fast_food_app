@@ -12,7 +12,7 @@ class SticktextWidget extends StatelessWidget {
   final double? fontSize;
   final FontWeight? fontWeight;
 
-  SticktextWidget({
+  const SticktextWidget({
     super.key,
     this.color,
     this.style,

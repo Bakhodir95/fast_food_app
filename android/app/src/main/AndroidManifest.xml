@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Required Permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -10,8 +13,11 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyBmAEoDBWinPjWRfzIgOHolkni8_wSu7_o"/>
+        <!-- Yandex API Key -->
+        <meta-data
+            android:name="com.yandex.mapkit.ApiKey"
+            android:value="34f46de5-2b7c-4cff-a42d-72b47b5e955e"/> 
+
 
         <activity
             android:name=".MainActivity"
@@ -22,11 +28,11 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
-            
+
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme"/>
-            
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -44,4 +50,5 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+
 </manifest>

@@ -1,4 +1,4 @@
-import 'package:fast_food_app/domain/entities/cart_item.dart';
+import 'package:fast_food_app/data/models/cart_item.dart';
 import 'package:fast_food_app/presentation/screens/home/order/delivery_screen.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
 import 'package:fast_food_app/utils/app_colors.dart';
@@ -141,17 +141,17 @@ class _OrderScreenState extends State<OrderScreen> {
                     width: 133.w,
                     borderColor: AppColors.containerBorderColor,
                     function: () {},
+                    color: Colors.white,
                     child: Text(
                       "Hammasi",
                       style: CustomFonts.inriaSans14,
-                    ),
-                    color: Colors.white)
+                    ))
               ],
             ),
             UniversalButtonWidget(
                 function: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (ctx) => DeliveryScreen()));
+                      MaterialPageRoute(builder: (ctx) => const DeliveryScreen()));
                 },
                 color: null,
                 child: Text(

@@ -20,9 +20,9 @@ class AboutUsScreen extends StatelessWidget {
               children: [
                 const HeaderWidget(),
                 Gap(30.h),
-                SticktextWidget(text: "BIZ HAQIMIZDA"),
+                const SticktextWidget(text: "BIZ HAQIMIZDA"),
                 Gap(20.h),
-                SticktextWidget(
+                const SticktextWidget(
                   text: "WELL FOOD HAQIDA",
                   fontSize: 18,
                 ),
@@ -31,8 +31,8 @@ class AboutUsScreen extends StatelessWidget {
                   "Bizning oshxona – bu salomatlik va mazalilik uyg‘unlashuvi. Har bir taomni sog‘lom mahsulotlardan tayyorlashni asosiy vazifa deb bilamiz. Mahsulotlarimiz yangi va ekologik toza bo‘lib, ularni sinchkovlik bilan tanlaymiz.\n\nBizda milliy va zamonaviy taomlar hamda vegetarianlar uchun ham maxsus menyu mavjud. Taomlarimizning tayyorlanishida yog‘ miqdorini minimum darajada saqlab, ko‘proq sabzavotlar va foydali tarkibiy qismlardan foydalanamiz.",
                   style: CustomFonts.inriaSans16grey,
                 ),
-                Gap(20),
-                SticktextWidget(
+                const Gap(20),
+                const SticktextWidget(
                   text: "RAQAMLARDA",
                   fontSize: 18,
                 ),
@@ -67,16 +67,16 @@ class AboutUsScreen extends StatelessWidget {
                   ),
                 ),
                 Gap(20.h),
-                SticktextWidget(
+                const SticktextWidget(
                   text: "ASOSCHISI",
                   fontSize: 18,
                 ),
-                Gap(6),
+                const Gap(6),
                 Text(
                   "KHATAMOV NURIDDIN tomonidan 2024-yil asos solingan",
                   style: CustomFonts.inriaSans20,
                 ),
-                Gap(30),
+                const Gap(30),
                 SizedBox(
                   width: double.infinity,
                   height: 408.h,

@@ -1,4 +1,4 @@
-import 'package:fast_food_app/domain/entities/promotion_item.dart';
+import 'package:fast_food_app/data/models/promotion_item.dart';
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
 import 'package:fast_food_app/presentation/widgets/promotion_card_widget.dart';
 import 'package:fast_food_app/presentation/widgets/sticktext_widget.dart';
@@ -47,10 +47,10 @@ class _NewsScreenState extends State<NewsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderWidget(),
-              Gap(29),
-              SticktextWidget(text: "YANGILIKLAR"),
-              Gap(20),
+              const HeaderWidget(),
+              const Gap(29),
+              const SticktextWidget(text: "YANGILIKLAR"),
+              const Gap(20),
               Expanded(
                 child: ListView.builder(
                   itemCount: promotions.length,

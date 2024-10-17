@@ -26,7 +26,7 @@ class _LocationScreenState extends State<LocationScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeaderWidget(),
+                  const HeaderWidget(),
                   Gap(10.h),
                   LocationWidget(),
                 ],

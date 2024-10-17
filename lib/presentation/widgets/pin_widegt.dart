@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 class PinThemeWidget extends StatelessWidget {
-  const PinThemeWidget({super.key});
+  const PinThemeWidget({super.key, required TextEditingController controller});
 
   @override
   Widget build(BuildContext context) {

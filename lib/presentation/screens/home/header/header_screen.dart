@@ -41,7 +41,7 @@ class HeaderScreen extends StatelessWidget {
                 onTap: () => {
                       Navigator.pop(context),
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (ctx) => MainScreen())),
+                          MaterialPageRoute(builder: (ctx) => const MainScreen())),
                     },
                 title: Text(
                   " - Asosiy",
@@ -55,7 +55,7 @@ class HeaderScreen extends StatelessWidget {
                 onTap: () => {
                       Navigator.pop(context),
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (ctx) => ProfileScreen())),
+                          MaterialPageRoute(builder: (ctx) => const ProfileScreen())),
                     },
                 title: Text(
                   " - Profil",
@@ -69,7 +69,7 @@ class HeaderScreen extends StatelessWidget {
                 onTap: () => {
                       Navigator.pop(context),
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (ctx) => BranchScreen())),
+                          MaterialPageRoute(builder: (ctx) => const BranchScreen())),
                     },
                 title: Text(
                   " - Filillar",
@@ -83,7 +83,7 @@ class HeaderScreen extends StatelessWidget {
                 onTap: () => {
                       Navigator.pop(context),
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (ctx) => AboutUsScreen())),
+                          MaterialPageRoute(builder: (ctx) => const AboutUsScreen())),
                     },
                 title: Text(
                   " - Biz haqimizda",
@@ -100,7 +100,7 @@ class HeaderScreen extends StatelessWidget {
                 onTap: () => {
                       Navigator.pop(context),
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (ctx) => NewsScreen())),
+                          MaterialPageRoute(builder: (ctx) => const NewsScreen())),
                     },
                 title: Text(
                   " - Yangiliklar",
