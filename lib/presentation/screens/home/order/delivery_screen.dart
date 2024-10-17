@@ -1,5 +1,4 @@
 import 'package:fast_food_app/presentation/widgets/custom_textfield.dart';
-import 'package:fast_food_app/presentation/widgets/location2_widget.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
 import 'package:fast_food_app/presentation/widgets/user_rinfo_widget.dart';
 import 'package:fast_food_app/utils/app_colors.dart';
@@ -95,7 +94,6 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
                 ],
               ),
               SizedBox(height: 12.h),
-              Location2Widget(),
               SizedBox(height: 15.h),
               Row(
                 children: [

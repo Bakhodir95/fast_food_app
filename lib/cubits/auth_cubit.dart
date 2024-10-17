@@ -8,23 +8,20 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit({required this.authRepository}) : super(InitialAuthState());
 
-  Future<void> register(AuthRequest request) async {
+  Future<void> sendCode(AuthRequest request) async {
     emit(LoadingState());
     try {
-      final auth = await authRepository.register(request);
-      emit(LoadedState(auth));
+       await authRepository.sendPhoneNumber(request);
+      emit(RegisterState(phoeNumber: request.phone));
     } catch (e) {
+      print('AUTH CUBIT ERRRO: $e');
       emit(ErrorState(e.toString()));
     }
   }
 
-  Future<void> sendPhoneNumber(String phoneNumber) async {
+  Future<void> register(Map<String, dynamic> request) async {
     emit(LoadingState());
-    try {
-      final response = await authRepository.sendPhoneNumber(phoneNumber);
-      emit(SmsCodeSentState(response));
-    } catch (e) {
-      emit(ErrorState(e.toString()));
-    }
+    await authRepository.register(request);
+    emit(RegisteredState());
   }
 }

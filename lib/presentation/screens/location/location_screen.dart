@@ -1,5 +1,4 @@
 import 'package:fast_food_app/presentation/widgets/header_widget.dart';
-import 'package:fast_food_app/presentation/widgets/location_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -28,7 +27,6 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: [
                   const HeaderWidget(),
                   Gap(10.h),
-                  LocationWidget(),
                 ],
               ),
             ),

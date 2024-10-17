@@ -1,13 +1,13 @@
 import 'package:fast_food_app/cubits/auth_cubit.dart';
 import 'package:fast_food_app/cubits/auth_state.dart';
-import 'package:fast_food_app/presentation/screens/auth/confirmation_screen.dart';
+import 'package:fast_food_app/data/models/auth_request/auth_request.dart';
 import 'package:fast_food_app/presentation/widgets/custom_textfield.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
+import 'package:fast_food_app/utils/textinputformat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
@@ -58,9 +58,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 2,
                         ),
                         CustomTextfield(
-                          inputFormatters: [
-                            MaskedInputFormatter("+### (##) ###-##-##"),
-                          ],
+                          inputFormatters: [AppInputFormatters.phoneFormatter],
                           controller: _phoneController,
                           prefixIcon: const Icon(CupertinoIcons.phone_fill),
                           textInputType: TextInputType.phone,
@@ -73,45 +71,37 @@ class RegisterScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                        )
+                        ),
                       ],
                     ),
-                    BlocConsumer<AuthCubit, AuthState>(
-                      listener: (context, state) {
-                        if (state is SmsCodeSentState) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (ctx) => const ConfirmationScreen()),
-                          );
-                        } else if (state is ErrorState) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(state.error),
-                            ),
-                          );
+                    UniversalButtonWidget(
+                      function: () {
+                        if (_formkey.currentState!.validate()) {
+                          _formkey.currentState!.save();
+
+                          String cleanedPhone = _phoneController.text;
+                          cleanedPhone = cleanedPhone.replaceAll(' ', '');
+
+                          context
+                              .read<AuthCubit>()
+                              .sendCode(AuthRequest(phone: cleanedPhone));
                         }
                       },
-                      builder: (context, state) {
-                        if (state is LoadingState) {
-                          return const CircularProgressIndicator();
-                        }
-                        return UniversalButtonWidget(
-                            function: () {
-                              if (_formkey.currentState!.validate()) {
-                                _formkey.currentState!.save();
-                                context
-                                    .read<AuthCubit>()
-                                    .sendPhoneNumber(_phoneController.text);
-                              }
-                              return;
-                            },
-                            color: null,
-                            child: Text(
-                              "Yuborish",
-                              style: CustomFonts.inriaSans16,
-                            ));
-                      },
+                      color: null,
+                      child: BlocBuilder<AuthCubit, AuthState>(
+                        builder: (context, state) {
+                          if (state is LoadingState) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          return Text(
+                            "Yuborish",
+                            style: CustomFonts.inriaSans16,
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

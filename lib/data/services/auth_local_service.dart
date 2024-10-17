@@ -1,13 +1,15 @@
 import 'package:fast_food_app/core/di/di.dart';
-import 'package:fast_food_app/data/models/auth_response/auth_response.dart';
+import 'package:fast_food_app/data/models/register_request/register_request.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthLocalService {
   final token = "token";
+  final refResh = "reshreshtoken";
   final preferance = getIt.get<SharedPreferences>();
 
-  Future<void> saveToken(AuthResponse auth) async {
-    await preferance.setString(token, auth.token);
+  Future<void> saveToken(RegisterResponse auth) async {
+    await preferance.setString(token, auth.accessToken);
+    await preferance.setString(refResh, auth.refreshToken);
   }
 
   String? getToken() {

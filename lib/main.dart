@@ -1,9 +1,12 @@
 import 'package:fast_food_app/core/di/di.dart';
 import 'package:fast_food_app/cubits/auth_cubit.dart';
+import 'package:fast_food_app/cubits/auth_state.dart';
 import 'package:fast_food_app/data/repositories/auth_repository/auth_repository.dart';
 import 'package:fast_food_app/data/services/auth_api_service.dart';
 import 'package:fast_food_app/data/services/auth_local_service.dart';
+import 'package:fast_food_app/presentation/screens/auth/confirmation_screen.dart';
 import 'package:fast_food_app/presentation/screens/auth/register_screen.dart';
+import 'package:fast_food_app/presentation/screens/home/main_screen.dart';
 import 'package:fast_food_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,7 +42,26 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: AppColors.white,
             ),
             debugShowCheckedModeBanner: false,
-            home: RegisterScreen(),
+            home: BlocBuilder<AuthCubit, AuthState>(
+              buildWhen: (previous, current) {
+                return current is! ErrorState && current is! LoadingState;
+              },
+              builder: (context, state) {
+                if (state is InitialAuthState) {
+                  return RegisterScreen();
+                }
+
+                if (state is RegisterState) {
+                  return ConfirmationScreen(phoneNumber: state.phoeNumber);
+                }
+
+                if (state is RegisteredState) {
+                  return const MainScreen();
+                }
+
+                return const SizedBox();
+              },
+            ),
           ),
         );
       },

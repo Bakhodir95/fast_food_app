@@ -1,17 +1,16 @@
 import 'package:fast_food_app/cubits/auth_cubit.dart';
 import 'package:fast_food_app/cubits/auth_state.dart';
-import 'package:fast_food_app/data/models/auth_request/auth_request.dart';
-import 'package:fast_food_app/presentation/screens/home/main_screen.dart';
-import 'package:fast_food_app/presentation/widgets/pin_widegt.dart';
 import 'package:fast_food_app/presentation/widgets/universal_button_widget.dart';
 import 'package:fast_food_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:pinput/pinput.dart';
 
 class ConfirmationScreen extends StatefulWidget {
-  const ConfirmationScreen({super.key});
+  final String phoneNumber;
+  const ConfirmationScreen({super.key, required this.phoneNumber});
 
   @override
   _ConfirmationScreenState createState() => _ConfirmationScreenState();
@@ -55,51 +54,58 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                       Text("Telefon raqamingizga kelgan SMS kodni kiriting",
                           style: CustomFonts.inriaSans14),
                       const Gap(10),
-                      PinThemeWidget(
-                        controller: _smsCodeController,
-                      ),
+                      Pinput(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        length: 6,
+                        defaultPinTheme: PinTheme(
+                          width: 56,
+                          height: 68,
+                          textStyle: const TextStyle(
+                              fontSize: 20, color: Colors.black),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.grey),
+                          ),
+                        ),
+                        onCompleted: (pin) {
+                          context.read<AuthCubit>().register({
+                            "confirmation_code": pin,
+                            "phone": widget.phoneNumber
+                          });
+                        },
+                      )
                     ],
                   ),
-                  BlocConsumer<AuthCubit, AuthState>(
-                    listener: (context, state) {
-                      if (state is SmsCodeSentState) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (ctx) => const MainScreen()));
-                      } else if (state is ErrorState) {
+                  UniversalButtonWidget(
+                    function: () {
+                      if (_smsCodeController.text.isNotEmpty) {
+                        context.read<AuthCubit>().register({
+                          "confirmation_code": _smsCodeController,
+                          "phone": widget.phoneNumber
+                        });
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(state.error),
+                          const SnackBar(
+                            content: Text('Please enter the SMS code'),
                           ),
                         );
                       }
                     },
-                    builder: (context, state) {
-                      if (state is LoadingState) {
-                        return const CircularProgressIndicator();
-                      }
-                      return UniversalButtonWidget(
-                        function: () {
-                          if (_smsCodeController.text.isNotEmpty) {
-                            context.read<AuthCubit>().register(
-                                AuthRequest(phone: _smsCodeController.text));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Please enter the SMS code'),
-                              ),
-                            );
-                          }
-                        },
-                        color: null,
-                        child: Text(
+                    color: null,
+                    child: BlocBuilder<AuthCubit, AuthState>(
+                      builder: (context, state) {
+                        if (state is LoadingState) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return Text(
                           "Yuborish",
                           style: CustomFonts.inriaSans16,
-                        ),
-                      );
-                    },
-                  ),
+                        );
+                      },
+                    ),
+                  )
                 ],
               ),
             ),
